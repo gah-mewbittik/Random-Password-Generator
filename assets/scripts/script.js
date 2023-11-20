@@ -15,7 +15,7 @@ generateBtn.addEventListener("click", writePassword);
 
   
 ///start project
-//Arrays of lowercaseArr, numArr, and characters
+//Arrays of lowercaseArr, numArr, and special characters
 var lowercaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x','y', 'z'];
 var uppercaseArr = ['A', 'B', 'C', 'D','E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var numArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -53,42 +53,51 @@ function generatePassword(){
   ////////Switch starts
   switch(true){
 
-    // lowercase question options
+    // lowercase evaluation + ...
     case passConfirms.lowerQuote && passConfirms.upperQuote && passConfirms.numberQuote && passConfirms.specialQuote:
+      // array (arrSetup) takes an array and add, 0 or more, arrays together    NOTE: this process repeats in variation for every case
       arrSetup = lowercaseArr.concat(uppercaseArr, numArr, specialCharacterArr);
+      //Generates random characters for numOfChar length and returns the password. NOTE: this process repeats exactly the same way for every case
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-    
-    case passConfirms.lowerQuote  && passConfirms.upperQuote && passConfirms.numberQuote:
+    // lowercase evaluation + ...
+    case passConfirms.lowerQuote && passConfirms.upperQuote && passConfirms.numberQuote:
       arrSetup = lowercaseArr.concat(uppercaseArr, numArr);
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
     }
     return randPass;
-
+    // lowercase evaluation + ...
     case passConfirms.lowerQuote && passConfirms.numberQuote && passConfirms.specialQuote:
-      arrSetup = lowercaseArr.concat( numArr, specialCharacterArr);
+      arrSetup = lowercaseArr.concat(numArr, specialCharacterArr);
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
-      case passConfirms.lowerQuote && passConfirms.specialQuote:
-        arrSetup = lowercaseArr.concat( specialCharacterArr);
-        for(var i = 0; i < numberOfChar; i++){      
-          randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
-        }
-        return randPass;
-
-    case passConfirms.lowerQuote && upperQuote:
+    // lowercase evaluation + ...
+    case passConfirms.lowerQuote && passConfirms.numberQuote:  
+      arrSetup = lowercaseArr.concat(numArr);
+      for(var i = 0; i < numberOfChar; i++){      
+        randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
+      }
+      return randPass;
+    // lowercase evaluation + ...
+    case passConfirms.lowerQuote && passConfirms.specialQuote:    
+      arrSetup = lowercaseArr.concat(specialCharacterArr);
+      for(var i = 0; i < numberOfChar; i++){      
+        randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
+      }
+      return randPass;
+    // lowercase evaluation + ...
+    case passConfirms.lowerQuote && passConfirms.upperQuote: 
       arrSetup = lowercaseArr.concat(uppercaseArr);
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
+    // lowercase evaluation
     case passConfirms.lowerQuote:
       arrSetup = lowercaseArr;
       for(var i = 0; i < numberOfChar; i++){      
@@ -96,7 +105,7 @@ function generatePassword(){
       }
       return randPass;
 
-    /////uppercase question options
+    /////uppercase evaluation + ...
     
     case passConfirms.upperQuote && passConfirms.numberQuote && passConfirms.specialQuote:
       arrSetup = uppercaseArr.concat(numArr, specialCharacterArr);
@@ -104,21 +113,21 @@ function generatePassword(){
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
+    //uppercase evaluation + ...
     case passConfirms.upperQuote && passConfirms.numberQuote:
       arrSetup = uppercaseArr.concat(numArr);
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
+      //uppercase evaluation + ...
       case passConfirms.upperQuote && passConfirms.specialQuote:
         arrSetup = uppercaseArr.concat(specialCharacterArr);
         for(var i = 0; i < numberOfChar; i++){      
           randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
         }
         return randPass;
-
+    //uppercase evaluation 
     case passConfirms.upperQuote:
       arrSetup = uppercaseArr;
       for(var i = 0; i < numberOfChar; i++){      
@@ -126,7 +135,7 @@ function generatePassword(){
       }
       return randPass;
  
-///// number Question options
+    ////number evaluation + ... 
 
     case passConfirms.numberQuote && passConfirms.specialQuote:
       arrSetup = numArr.concat(specialCharacterArr);
@@ -134,7 +143,7 @@ function generatePassword(){
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
+    //number evaluation
     case passConfirms.numberQuote:
       arrSetup = numArr;
       for(var i = 0; i < numberOfChar; i++){      
@@ -142,7 +151,7 @@ function generatePassword(){
       }
       return randPass;
 
-    // special question option
+    // specialQuote evaluation
 
     case passConfirms.specialQuote:
       arrSetup = specialCharacterArr;
@@ -150,10 +159,10 @@ function generatePassword(){
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
       }
       return randPass;
-
+    // default return.
     default:
       alert('ERROR. Enter a minimum of and a maximum of 128 characters. ONLY enter number.');
-        
+      
   }////  end of switch
 
  }
