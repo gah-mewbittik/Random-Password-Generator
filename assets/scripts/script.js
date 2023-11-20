@@ -27,21 +27,15 @@ var arrSetup= [];
 // start of generatePassword //
 function generatePassword(){
   //initial prompt question - Password size request
-  let numberOfChar = Number(prompt("Type the number of characters you want your password to be: "));
+  let numberOfChar = prompt("Type the number of characters you want your password to be: ");
   
   // empty string, but will be the random generate password
   var randPass = '';
 
-
 /// # of character tests  min = 8, max =128, and empty string 
- if(numberOfChar == "") {
-  alert('ERROR. Enter a minimum of and a maximum of 128 characters. ONLY enter number.');
- }else if(numberOfChar < 8){
-  alert('ERROR. Enter a minimum of and a maximum of 128 characters. ONLY enter number.');
- }else if(numberOfChar > 128){
-  alert('ERROR. Enter a minimum of and a maximum of 128 characters. ONLY enter number.');
-
-}else{
+ if(numberOfChar == "" || numberOfChar < 8 || numberOfChar > 128  || numberOfChar != Number(numberOfChar)){
+  alert('ERROR. Enter a number that is a minimum of 8 and a maximum of 128. ONLY enter a number.');
+  }else{
   // object that contains the questions need for this project 
   var passConfirms = {
     lowerQuote: confirm("Would you like to use lowercase letters?"),
@@ -65,6 +59,13 @@ function generatePassword(){
     // lowercase evaluation + ...
     case passConfirms.lowerQuote && passConfirms.upperQuote && passConfirms.numberQuote:
       arrSetup = lowercaseArr.concat(uppercaseArr, numArr);
+      for(var i = 0; i < numberOfChar; i++){      
+        randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
+    }
+    return randPass;
+    // lowercase evaluation + ..
+    case passConfirms.lowerQuote && passConfirms.upperQuote && passConfirms.specialQuote:
+      arrSetup = lowercaseArr.concat(uppercaseArr, specialCharacterArr);
       for(var i = 0; i < numberOfChar; i++){      
         randPass += arrSetup[(Math.floor(Math.random() * arrSetup.length))];
     }
@@ -161,11 +162,11 @@ function generatePassword(){
       return randPass;
     // default return.
     default:
-      alert('ERROR. Enter a minimum of and a maximum of 128 characters. ONLY enter number.');
+      alert('ERROR. You are required to select at least one character type. Enter a minimum of 8 and a maximum of 128 characters. ONLY enter number.');
       
   }////  end of switch
 
- }
+ } // end of else
  
 
 }////  end of GeneratePassword function
