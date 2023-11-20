@@ -16,7 +16,7 @@ N/A
 
 ## Usage
 
-To use the password generator, simply click the following link: https://gah-mewbittik.github.io/Portfolio/
+To use the password generator, simply click the following link: https://gah-mewbittik.github.io/Random-Password-Generator/
 From there you will be able view the Random Password Generator and simply click the "Generate Password" button. Then a prompt window will display asking you
 to select the number of characters you would like your password to be(minimum of 8 characters and maximum of 128). After that you are asked for questions, and they
 are if you would like to have lowercase, uppercase, numbers, and special characters. 
